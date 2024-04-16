@@ -42,6 +42,14 @@ function drop(event) {
     }
 }
 
+function removeImage(event) {
+    event.preventDefault();
+    var imageElement = event.target;
+    if (imageElement.parentNode) {
+        imageElement.parentNode.removeChild(imageElement);
+    }
+}
+
 
 
 
