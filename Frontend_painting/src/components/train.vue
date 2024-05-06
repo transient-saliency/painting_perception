@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2024-02-01 19:32:17
  * @LastEditors: Qing Shi
- * @LastEditTime: 2024-05-06 22:35:45
+ * @LastEditTime: 2024-05-06 23:00:13
 -->
 <template>
     <div style="width: 100%; height: 100%; text-align: left;">
@@ -139,7 +139,7 @@ export default {
                 res_data.push({
                     type: type,
                     id: i,
-                    path: '/output/' + name + '/' + path_data[i]
+                    path: 'output/' + name + '/' + path_data[i]
                 });
             }
             return res_data;

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-09-17 23:36:36
- * @LastEditTime: 2024-04-17 12:23:32
+ * @LastEditTime: 2024-05-06 23:01:35
 -->
 <template>
     <div class="common-layout" :style="{width: '100%', height: '100vh', backgroundColor: (isRelax || isGap) ? ' #797775' : 'white' }" v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
@@ -90,11 +90,11 @@ export default {
             let figCnt = 0;
             let random_index = Math.floor(Math.random() * 10);
             console.log(random_index)
-            this.imgURL = '/output/' + file_name + '/' + fig_data[fileCnt][file_type].fig_info[(figCnt + random_index) % 10];
+            this.imgURL = 'output/' + file_name + '/' + fig_data[fileCnt][file_type].fig_info[(figCnt + random_index) % 10];
             this.figCnt = (figCnt + random_index) % 10;
             let figTimer = setInterval(() => {
 
-                this.imgURL = '/output/' + file_name + '/' + fig_data[fileCnt][file_type].fig_info[(figCnt + random_index) % 10];
+                this.imgURL = 'output/' + file_name + '/' + fig_data[fileCnt][file_type].fig_info[(figCnt + random_index) % 10];
                 figCnt += 1;
                 console.log(random_index, figCnt, (figCnt + random_index) % 10)
                 this.figCnt = (figCnt + random_index) % 10;
