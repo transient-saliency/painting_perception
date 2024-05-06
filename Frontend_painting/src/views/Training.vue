@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-09-17 23:36:36
- * @LastEditTime: 2024-04-13 22:33:58
+ * @LastEditTime: 2024-05-06 22:36:21
 -->
 <template>
     <div class="common-layout" :style="{width: '100%', height: '100vh', backgroundColor: isRelax ? ' #797775' : '#ffffff'}" v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
