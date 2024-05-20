@@ -42,6 +42,7 @@ export const useDataStore = defineStore("dataStore", {
                 info: {},
                 data: []
             },
+            info: {},
             temAccuracy: {
                 right: 0,
                 wrong: 0

@@ -42,21 +42,15 @@ export default {
     methods: {
         jumpTo() {
             const dataStore = useDataStore();
-            dataStore.allData.info = {
+            dataStore.info = {
                 "code": this.code,
                 "age": this.age,
                 "gender": this.gender
             }
-            this.$router.push('/beforeTrain');
+            this.$router.push('/beforeTest1');
         }
     },
-    watch: {
-        radio: {
-            handler() {
-                console.log(this.radio);
-            }
-        }
-    },
+    watch: {},
 }
 </script>
 

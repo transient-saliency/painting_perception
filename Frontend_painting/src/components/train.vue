@@ -130,7 +130,7 @@ export default {
     },
     methods: {
         dataProcess(data, cnt, info) {
-            console.log(data.data[cnt], cnt, data);
+            // console.log(data.data[cnt], cnt, data);
             let path_data = data.data[cnt][info].fig_info;
             let name = data.data[cnt].name;
             let type = data.data[cnt][info].type;
@@ -139,13 +139,13 @@ export default {
                 res_data.push({
                     type: type,
                     id: i,
-                    path: 'output/' + name + '/' + path_data[i]
+                    path: 'painting/' + name + '/' + path_data[i]
                 });
             }
             return res_data;
         },
         elCheck (data) {
-            console.log(data);
+            // console.log(data);
             for (let i in data) {
                 if (data[i]['id'] == this.selectElementIndex) {
                     return false;

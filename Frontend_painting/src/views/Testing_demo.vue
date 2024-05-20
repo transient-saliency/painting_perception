@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2024-05-08 20:18:45
  * @LastEditors: Qing Shi
- * @LastEditTime: 2024-05-08 20:18:46
+ * @LastEditTime: 2024-05-20 16:17:20
 -->
 <!--
  * @Description: 
@@ -12,32 +12,20 @@
  * @LastEditTime: 2024-05-06 23:01:35
 -->
 <template>
-    <div class="common-layout" :style="{width: '100%', height: '100vh', backgroundColor: (isRelax || isGap || isPic) ? ' #797775' : 'white' }" v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
+    <div class="common-layout" :style="{width: '100%', height: '100vh', backgroundColor: (isGap) ? ' #797775' : 'white' }" v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
         <!-- <Main :msgH="msgH"/> -->
         <!-- @click.right="nextRoundClick()" -->
     
         <div style="height: 100%; width: 100%;">
             <!-- <test v-if="!isRelax" :pattern="pattern[patternCnt]" :startTime="startTime"></test> -->
-            <div v-if="!isRelax && !isGap && !isPic" class="fullscreen-img">
+            <div v-show="!isGap" class="fullscreen-img">
                 <!-- <div style="font-size: 50px; color: red;">{{ figCnt }}</div> -->
                 <img ref="myImage" :src="imgURL" alt="" :class="{
-                        
-                                        }">
+                            
+                                            }">
             </div>
-            <div v-else-if="isRelax" style="width: 100%; height: 100%; display: flex; justify-content: center; flex-direction: column; padding-top: calc(0vh);">
-                <div style="margin-bottom: 10px; font-size: 40px; color: white;">第 {{ (fileCnt + 1) }} 轮</div>
-    
+            <div v-show="isGap" style="width: 100%; height: 100%; display: flex; justify-content: center; flex-direction: column; padding-top: calc(0vh);">
                 <div style="margin-bottom: 30px; font-size: 20px; color: white;">休息 {{ (timeNote) }} 秒</div>
-            </div>
-            <div v-else-if="isGap" style="width: 100%; height: 100%; display: flex; justify-content: center; flex-direction: column; padding-top: calc(0vh);">
-                <!-- <div style="margin-bottom: 10px; font-size: 40px; color: white;">第 {{ (fileCnt + 1) }} - {{ (typeCnt + 1) }} 轮</div> -->
-    
-                <div style="margin-bottom: 30px; font-size: 20px; color: white;">休息 {{ (timeNote) }} 秒</div>
-            </div>
-            <div v-else-if="isPic" style="width: 100%; height: 100%; display: flex; justify-content: center; flex-direction: column; padding-top: calc(0vh);">
-                <!-- <div style="margin-bottom: 10px; font-size: 40px; color: white;">第 {{ (fileCnt + 1) }} - {{ (typeCnt + 1) }} 轮</div> -->
-    
-                <!-- <div style="margin-bottom: 30px; font-size: 20px; color: white;">休息 {{ (timeNote) }} 秒</div> -->
             </div>
         </div>
     </div>
@@ -45,36 +33,26 @@
 
 <script>
 import axios from 'axios';
-import { saveData } from '../service/module/dataService';
 import { useDataStore } from "@/stores/counter";
-import fig_info from '/public/demo_des.json'
+import fig_info from '/public/data_description.json'
 
 export default {
     name: "home_view",
     data() {
         return {
             msgH: null,
-            pattern: [],
-            patternCnt: 0,
-
-            fileCnt: -1,
-            typeCnt: 0,
-            figCnt: 0,
+            figCnt: -1,
 
             allData: [],
 
-            timeCnt: 0,
-            gapCnt: 0,
-            pictureCnt: 0,
-            figShowCnt: 0,
-
             timeNote: 0,
-            isRelax: false,
-            timer: null,
             imgURL: '',
             typeGroup: ['a-b', 'l-a', 'l-b'],
             isGap: false,
-            isPic: false
+            fig_res_data: [],
+
+            intervalID: null,
+            timeoutID: null
         };
     },
     computed: {
@@ -87,68 +65,52 @@ export default {
     },
     mounted() {
         const dataStore = useDataStore();
-        // this.timeCnt = dataStore.setting.relax_time;
-        // this.gapCnt = dataStore.setting.gap_relax_time;
-        // this.figShowCnt = dataStore.setting.show_time;
-        this.timeCnt = 10;
-        this.figShowCnt = 2;
-        this.gapCnt = 5;
-        this.pictureCnt = 1;
-        this.patternCnt = 0;
         this.allData = fig_info.data
-        // this.calcPic(this.allData);
-        this.timeCountDown();
+        this.fig_res_data = this.calcPic(this.allData);
+        this.startInterval();
+    },
+    beforeDestroy() {
+        if (this.intervalID) {
+            clearInterval(this.intervalID);
+        }
+        if (this.timeoutID) {
+            clearTimeout(this.timeoutID);
+        }
     },
     methods: {
         calcPic(fig_data) {
-            let fileCnt = this.fileCnt;
-            let typeCnt = this.typeCnt;
-            let file_name = fig_data[fileCnt].name;
-            let file_type = this.typeGroup[typeCnt];
-            let figCnt = 0;
-            let random_index = Math.floor(Math.random() * 10);
-            console.log(random_index)
-            // this.imgURL = 'Desktop/' + file_name + '/' + fig_data[fileCnt][file_type].fig_info[(figCnt + random_index) % 10];
             this.imgURL = ''
             this.isPic = true;
-            this.figCnt = (figCnt + random_index) % 10;
-            let signalRelaxCnt = 0;
-            let figTimer = setInterval(() => {
-                // console.log(signalRelaxCnt, 'signalRelax')
-                if (signalRelaxCnt == 0) {
-                    this.isPic = false;
-                    this.imgURL = 'Desktop/' + file_name + '/' + fig_data[fileCnt][file_type].fig_info[(figCnt + random_index) % 10];
-                    figCnt += 1;
-                    console.log(random_index, figCnt, (figCnt + random_index) % 10)
-                    this.figCnt = (figCnt + random_index) % 10;
-                    if (figCnt == fig_data[fileCnt][file_type].fig_info.length + 1) {
-                        if (typeCnt == 2) {
-                            if (fileCnt == this.allData.length - 1) {
-                                clearInterval(figTimer);
-                                this.$router.push('/end');
-                            }
-                        }
+            let res_data = new Array();
+            for (let index in fig_data) {
+                let file_name = fig_data[index].name;
+                for (let type_name of this.typeGroup) {
+                    for (let fig_name in fig_data[index][type_name].fig_info) {
+                        let url = file_name + '/' + fig_data[index][type_name].fig_info[fig_name];
+                        res_data.push(url);
                     }
-                    if (figCnt == fig_data[fileCnt][file_type].fig_info.length + 1) {
-                        // this.isGap = true;
-                        // console.log(this.isGap)
-                        if (typeCnt == this.typeGroup.length - 1) {
-                            this.timeCountDown();
-                            clearInterval(figTimer);
-                        } else {
-                            this.gapCountDown()
-                            clearInterval(figTimer);
-                        }
-                    }
-                } else if (signalRelaxCnt == this.figShowCnt) {
-                    this.isPic = true;
                 }
-                signalRelaxCnt = (signalRelaxCnt + 1) % (this.figShowCnt + 1);
-                // else {
-                //     this.picCountDown();
-                // }
-            }, 1000)
-            // }, (this.figShowCnt + 1) * 1000)
+            }
+            res_data = this.shuffleArray(res_data);
+            this.saveData(res_data);
+            return res_data;
+        },
+        saveData(res_data) {
+            const dataStore = useDataStore();
+            let data = {
+                info: dataStore.info,
+                data: res_data
+            };
+            // axios.post('https://formspree.io/f/xrgnoavv', {
+            axios.post('https://formspree.io/f/xqkrgypr', {
+                data: JSON.stringify(data),
+                dataType: 'json'
+            }).then((res) => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            })
+            // this.$router.push('/end');
         },
         shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -157,78 +119,41 @@ export default {
             }
             return array;
         },
-        timeCountDown() {
-            this.isRelax = !this.isRelax;
-            let timeCount = this.timeCnt;
-            this.timeNote = timeCount;
-            this.fileCnt += 1;
-            this.typeCnt = 0;
-            this.timer = setInterval(() => {
-                if (timeCount > 0) {
-                    timeCount--;
-                    this.timeNote = timeCount;
-                } else {
-                    clearInterval(this.timer);
-                    this.startTest();
-                }
-            }, 1000);
-        },
-        gapCountDown() {
-            this.isGap = !this.isGap;
-            let timeCount = this.gapCnt;
-            this.timeNote = timeCount;
-            this.timer = setInterval(() => {
-                if (timeCount > 0) {
-                    timeCount--;
-                    this.timeNote = timeCount;
-                } else {
-                    clearInterval(this.timer);
-                    this.typeCnt += 1;
-                    this.startGap();
-                }
-            }, 1000);
-        },
-        picCountDown() {
-            this.isPic = !this.isPic;
-            let timeCount = this.pictureCnt;
-            // this.timeNote = timeCount;
-            this.timer = setInterval(() => {
-                if (timeCount > 0) {
-                    timeCount--;
-                    this.timeNote = timeCount;
-                } else {
-                    clearInterval(this.timer);
-                    this.typeCnt += 1;
-                    this.startPic();
-                }
-            }, 1000);
-        },
-        skipRelax() {
-            clearInterval(this.timer);
-            this.startTest();
-        },
-        startTest() {
-            this.isRelax = false;
-            this.calcPic(this.allData);
-        },
-        startGap() {
-            this.isGap = false;
-            this.calcPic(this.allData);
-        },
-        startPic() {
-            this.isPic = false;
-            this.calcPic(this.allData);
-        }
-    },
-    watch: {
-        isRelax: {
-            handler() {
-                // if (this.isRelax) {
-                //     this.calcPic(this.allData);
-                // }
+        executeFunction() {
+            this.isGap = !this.isGap
+            this.figCnt += 1;
+            if (this.figCnt >= this.fig_res_data.length) {
+                this.$router.push('/beforeTest2');
             }
+            let path = this.fig_res_data[this.figCnt];
+            this.imgURL = 'painting/' + path;
+            this.timeoutID = setTimeout(() => {
+                this.startInterval();
+            }, 15000)
+        },
+        startInterval() {
+            if (this.intervalID) {
+                clearInterval(this.intervalID);
+            }
+            if (this.timeoutID) {
+                clearTimeout(this.timeoutID);
+            }
+            this.isGap = !this.isGap
+
+            let timeCount = 10;
+            this.timeNote = timeCount;
+            this.intervalID = setInterval(() => {
+                if (timeCount > 0) {
+                    timeCount -= 1;
+                    this.timeNote = timeCount;
+                } else {
+                    clearInterval(this.intervalID)
+                    this.executeFunction();
+                }
+            }, 1000);
         }
     },
+    watch: {},
     components: {}
 };
 </script>

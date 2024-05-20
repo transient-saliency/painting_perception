@@ -9,7 +9,9 @@
 <template>
     <div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
         <div style="font-size: 16px;">
-            <h1 style="margin-bottom: 20px; font-size: 35px;">设置</h1>
+
+            <h1 style="margin-bottom: 20px; font-size: 35px;">实验二</h1>
+            <!-- <h1 style="margin-bottom: 20px; font-size: 35px;">设置</h1>
             <div style="margin-top: 20px; display: flex; align-items: center;">休息时长: &nbsp;&nbsp;&nbsp;
                 <el-input v-model="gap_relax_time" style="width: 240px" placeholder="Please input" ><template #append>S/组</template></el-input>
             </div>
@@ -19,7 +21,7 @@
             </div>
             <div style="margin-top: 20px; display: flex; align-items: center;">展示时长: &nbsp;&nbsp;&nbsp;
                 <el-input v-model="show_time" style="width: 240px" placeholder="Please input" ><template #append>S/张</template></el-input>
-            </div>
+            </div> -->
             <!-- <div style="margin-top: 20px; display: flex; align-items: center;">每组数量: &nbsp;&nbsp;&nbsp;
                 <el-input v-model="group_num" style="width: 240px" placeholder="Please input" >
                 
@@ -61,15 +63,15 @@ export default {
     methods: {
         jumpTo() {
 
-            const dataStore = useDataStore();
-            dataStore.setting = {
-                group_num: this.group_num,
-                relax_time: this.relax_time,
-                show_time: this.show_time,
-                gap_relax_time: this.gap_relax_time
-            }
+            // const dataStore = useDataStore();
+            // dataStore.setting = {
+            //     group_num: this.group_num,
+            //     relax_time: this.relax_time,
+            //     show_time: this.show_time,
+            //     gap_relax_time: this.gap_relax_time
+            // }
             
-            this.$router.push('/test');
+            this.$router.push('/test2');
             
             // axios.post('https://formspree.io/f/xrgnoavv', {
             //     data: {

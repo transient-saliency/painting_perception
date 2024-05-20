@@ -8,7 +8,7 @@
   <div class="common-layout" style="width: 100%; height: 100vh; padding-top: 20vh;" v-loading="!initSign" :element-loading-text="loadingText"
         element-loading-background="rgba(0, 0, 0, 0.8)">
         <div style="font-size: 60px; font-family:'Times New Roman', Times, serif;">User Study</div>
-        <div style="font-style: italic; font-size: 25px; margin-top: 30px;">背景颜色 & 行高 & 文本类型</div>
+        <!-- <div style="font-style: italic; font-size: 25px; margin-top: 30px;">背景颜色 & 行高 & 文本类型</div> -->
         <!-- <div style="margin-top: 30px; font-size: 20px; font-style: italic; font-family: Georgia, 'Times New Roman', Times, serif;">
             Bingyuan (Bill) Wang
         </div> -->
