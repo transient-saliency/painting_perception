@@ -110,8 +110,8 @@ export default {
                 data: dataStore.allPaintingData,
                 info: dataStore.info
             };
-            axios.post('https://formspree.io/f/xrgnoavv', {
-            // axios.post('https://formspree.io/f/xqkrgypr', {
+            // axios.post('https://formspree.io/f/xrgnoavv', {
+            axios.post('https://formspree.io/f/xqkrgypr', {
                 data: JSON.stringify(data),
                 dataType: 'json',
                 testType: 'test2'
