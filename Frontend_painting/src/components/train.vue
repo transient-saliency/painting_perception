@@ -15,7 +15,7 @@
                             {{ item.type + ' ' + item.id }}
                         </span>
                     </div>
-                    <img :src="item.path" alt="" style="width: 85%;">
+                    <img :src="item.path" alt="" style="height: 85%;">
                 </div>
             </VueDraggable>
             <hr style="margin-top: 20px;">
@@ -25,7 +25,7 @@
                     <span style="font-size: 30px;">&larr;</span>
                 </span>
                 <span style="font-size: 15px; padding-top: 10px;">
-                    <span v-for="el in 10" :key="el + '_key'" :style="{ 
+                    <span v-for="el in painting_data.length" :key="el + '_key'" :style="{ 
                         padding: '0px 20px',
                         textDecoration: selectList_1.indexOf(el - 1) != -1 ? 'underline' : 'auto'
                     }">
@@ -69,7 +69,7 @@
                     <span style="font-size: 30px;">&larr;</span>
                 </span>
                 <span style="font-size: 15px; padding-top: 10px;">
-                    <span v-for="el in 10" :key="el + '_key'" :style="{ 
+                    <span v-for="el in painting_data.length" :key="el + '_key'" :style="{ 
                         padding: '0px 20px',
                         textDecoration: selectList_2.indexOf(el - 1) != -1 ? 'underline' : 'auto'
                     }">
@@ -132,6 +132,7 @@ export default {
         dataProcess(data, cnt, info) {
             // console.log(data.data[cnt], cnt, data);
             let path_data = data.data[cnt][info].fig_info;
+            path_data = this.shuffleArray(path_data);
             let name = data.data[cnt].name;
             let type = data.data[cnt][info].type;
             let res_data = new Array();
@@ -143,6 +144,13 @@ export default {
                 });
             }
             return res_data;
+        },
+        shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
         },
         elCheck (data) {
             // console.log(data);
@@ -215,9 +223,12 @@ export default {
     /* color: red; */
     /* border: solid 1px black; */
     width: calc(10vw - 1px);
+    height: calc(8vh);
 }
 
 .default {
+    max-height: calc(20vh + 30px);
     max-width: 20%;
+    /* height: 10vh */
 }
 </style>

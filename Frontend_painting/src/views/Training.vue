@@ -29,6 +29,7 @@
 import train from '../components/train.vue';
 import { useDataStore } from '../stores/counter';
 import painting_info from '/public/data_description.json';
+import axios from 'axios';
 
 export default {
     name: "home_view",
@@ -37,7 +38,7 @@ export default {
             msgH: null,
             pattern: [],
             patternCnt: 0,
-            timeCnt: 30,
+            timeCnt: 0,
             timeNote: 0,
             maxCnt: -1,
             isRelax: true,
@@ -64,6 +65,8 @@ export default {
                 });
             }
         }
+        // console.log(painting_info, this.pattern);
+        this.pattern = this.shuffleArray(this.pattern);
         this.maxCnt = info.length * painting_info.data.length;
         this.timeCountDown();
     },
@@ -84,6 +87,13 @@ export default {
                 select_id: []
             };
         },
+        shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        },
         nextRound() {
             this.roundSave();
             this.patternCnt++;
@@ -96,11 +106,15 @@ export default {
         },
         saveData() {
             const dataStore = useDataStore();
-            let data = dataStore.allPaintingData;
-            // axios.post('https://formspree.io/f/xrgnoavv', {
-            axios.post('https://formspree.io/f/xqkrgypr', {
+            let data = {
+                data: dataStore.allPaintingData,
+                info: dataStore.info
+            };
+            axios.post('https://formspree.io/f/xrgnoavv', {
+            // axios.post('https://formspree.io/f/xqkrgypr', {
                 data: JSON.stringify(data),
-                dataType: 'json'
+                dataType: 'json',
+                testType: 'test2'
             }).then((res) => {
                 console.log(res);
             }).catch(err => {

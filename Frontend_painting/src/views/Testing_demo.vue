@@ -104,7 +104,8 @@ export default {
             // axios.post('https://formspree.io/f/xrgnoavv', {
             axios.post('https://formspree.io/f/xqkrgypr', {
                 data: JSON.stringify(data),
-                dataType: 'json'
+                dataType: 'json',
+                testType: 'test1'
             }).then((res) => {
                 console.log(res);
             }).catch(err => {
