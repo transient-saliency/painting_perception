@@ -65,7 +65,7 @@
             <hr style="margin-top: 20px;">
             <div style="height: 40px; font-size: 15px; display: flex; justify-content: space-between; padding: 0px 20px; margin-top: -10px; margin-bottom: 0px;">
                 <span>
-                    Disharmony
+                    Dislike
                     <span style="font-size: 30px;">&larr;</span>
                 </span>
                 <span style="font-size: 15px; padding-top: 10px;">
@@ -78,7 +78,7 @@
                 </span>
                 <span>
                     <span style="font-size: 30px;">&rarr;</span>
-                    Harmony
+                    Like
                 </span>
             </div>
             <div style="display: flex;">
