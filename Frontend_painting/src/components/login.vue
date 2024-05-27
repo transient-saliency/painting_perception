@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Author: Qing Shi
+ * @Date: 2024-04-15 10:12:32
+ * @LastEditors: Qing Shi
+ * @LastEditTime: 2024-05-27 19:15:31
+-->
 <!--  -->
 <template>
     <div style="height: 100%; width: 100%; display: flex; justify-content: center; padding-top: 20vh;">
@@ -47,7 +54,7 @@ export default {
                 "age": this.age,
                 "gender": this.gender
             }
-            this.$router.push('/beforeTest1');
+            this.$router.push('/beforeTest2');
         }
     },
     watch: {},
