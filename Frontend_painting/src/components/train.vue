@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2024-02-01 19:32:17
  * @LastEditors: Qing Shi
- * @LastEditTime: 2024-05-27 22:00:04
+ * @LastEditTime: 2024-05-27 22:59:10
 -->
 <template>
     <div style="width: 100%; height: 100%; text-align: left;">
@@ -12,7 +12,7 @@
                 <div v-for="(item, i) in painting_data" :key="item.id" style="text-align: center; cursor: pointer;" class="default">
                     <div style="font-size: 20px;">
                         <span style="border: solid 1px none">                 
-                            {{ item.type + ' ' + item.id }}
+                            {{ item.id }}
                         </span>
                     </div>
                     <img :src="item.path" alt="" style="height: 85%;">
@@ -54,7 +54,7 @@
                                     borderRadius: '5px',
                                     padding: '0px 20px'
                                 }">
-                                    {{ item.type + ' ' + item.id }}
+                                    {{ item.id }}
                                 </span>
                         </div>
                         <img :src="item.path" alt="" style="width: 85%;">
@@ -98,7 +98,7 @@
                                     borderRadius: '5px',
                                     padding: '0px 20px'
                                 }">
-                                    {{ item.type + ' ' + item.id }}
+                                    {{ item.id }}
                                 </span>
                         </div>
                         <img :src="item.path" alt="" style="width: 85%;">
