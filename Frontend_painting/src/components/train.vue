@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2024-02-01 19:32:17
  * @LastEditors: Qing Shi
- * @LastEditTime: 2024-05-06 23:00:13
+ * @LastEditTime: 2024-05-27 22:00:04
 -->
 <template>
     <div style="width: 100%; height: 100%; text-align: left;">
@@ -11,7 +11,7 @@
             <VueDraggable v-model="painting_data" :animation="150" :group="{ name: 'painting', pull: 'clone', put: false }" :sort="false" @clone="onClone" class="image-container">
                 <div v-for="(item, i) in painting_data" :key="item.id" style="text-align: center; cursor: pointer;" class="default">
                     <div style="font-size: 20px;">
-                        <span style="border: solid 1px white">                 
+                        <span style="border: solid 1px none">                 
                             {{ item.type + ' ' + item.id }}
                         </span>
                     </div>
@@ -136,6 +136,7 @@ export default {
             let name = data.data[cnt].name;
             let type = data.data[cnt][info].type;
             let res_data = new Array();
+            console.log(name, path_data, data.data[cnt], type, info)
             for (let i in path_data) {
                 res_data.push({
                     type: type,

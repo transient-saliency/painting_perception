@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-09-17 23:36:36
- * @LastEditTime: 2024-05-06 22:36:21
+ * @LastEditTime: 2024-05-27 22:03:21
 -->
 <template>
     <div class="common-layout" :style="{width: '100%', height: '100vh', backgroundColor: isRelax ? ' #797775' : '#ffffff'}" v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
@@ -67,6 +67,7 @@ export default {
         }
         // console.log(painting_info, this.pattern);
         this.pattern = this.shuffleArray(this.pattern);
+        // console.log(this.pattern);
         this.maxCnt = info.length * painting_info.data.length;
         this.timeCountDown();
     },

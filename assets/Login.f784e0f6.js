@@ -1,1 +1,0 @@
-import{l as e}from"./login.0ee31c2a.js";import{_ as t,r as n,o as s,c,a as r}from"./index.5b055de9.js";const a={data(){return{}},components:{loginVue:e},computed:{},mounted(){},methods:{}},i={style:{height:"100%",width:"100%"}};function p(_,d,m,l,u,f){const o=n("loginVue");return s(),c("div",i,[r(o)])}const V=t(a,[["render",p]]);export{V as default};

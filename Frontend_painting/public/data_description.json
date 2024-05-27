@@ -6,12 +6,12 @@
 "tag": 1
 },
 "l-a": {
-"fig_info":  ["transformed_ab_0deg.png", "transformed_ab_45deg.png", "transformed_ab_90deg.png", "transformed_ab_135deg.png", "transformed_ab_180deg.png", "transformed_ab_225deg.png", "transformed_ab_270deg.png", "transformed_ab_315deg.png"],
+"fig_info":  ["transformed_la_0deg.png", "transformed_la_45deg.png", "transformed_la_90deg.png", "transformed_la_135deg.png", "transformed_la_180deg.png", "transformed_la_225deg.png", "transformed_la_270deg.png", "transformed_la_315deg.png"],
 "type": "l-a",
 "tag": 1
 },
 "l-b": {
-"fig_info":   ["transformed_ab_0deg.png", "transformed_ab_45deg.png", "transformed_ab_90deg.png", "transformed_ab_135deg.png", "transformed_ab_180deg.png", "transformed_ab_225deg.png", "transformed_ab_270deg.png", "transformed_ab_315deg.png"],
+"fig_info":   ["transformed_lb_0deg.png", "transformed_lb_45deg.png", "transformed_lb_90deg.png", "transformed_lb_135deg.png", "transformed_lb_180deg.png", "transformed_lb_225deg.png", "transformed_lb_270deg.png", "transformed_lb_315deg.png"],
 "type": "l-b",
 "tag": 1
 }
@@ -22,12 +22,12 @@
 "tag": 1
 },
 "l-a": {
-"fig_info":   ["transformed_ab_0deg.png", "transformed_ab_45deg.png", "transformed_ab_90deg.png", "transformed_ab_135deg.png", "transformed_ab_180deg.png", "transformed_ab_225deg.png", "transformed_ab_270deg.png", "transformed_ab_315deg.png"],
+"fig_info":   ["transformed_la_0deg.png", "transformed_la_45deg.png", "transformed_la_90deg.png", "transformed_la_135deg.png", "transformed_la_180deg.png", "transformed_la_225deg.png", "transformed_la_270deg.png", "transformed_la_315deg.png"],
 "type": "l-a",
 "tag": 1
 },
 "l-b": {
-"fig_info":   ["transformed_ab_0deg.png", "transformed_ab_45deg.png", "transformed_ab_90deg.png", "transformed_ab_135deg.png", "transformed_ab_180deg.png", "transformed_ab_225deg.png", "transformed_ab_270deg.png", "transformed_ab_315deg.png"],
+"fig_info":   ["transformed_lb_0deg.png", "transformed_lb_45deg.png", "transformed_lb_90deg.png", "transformed_lb_135deg.png", "transformed_lb_180deg.png", "transformed_lb_225deg.png", "transformed_lb_270deg.png", "transformed_lb_315deg.png"],
 "type": "l-b",
 "tag": 1
 }
