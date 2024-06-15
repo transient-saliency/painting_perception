@@ -49,6 +49,7 @@ export default {
     methods: {
         jumpTo() {
             const dataStore = useDataStore();
+            dataStore.allPaintingData = [];
             dataStore.info = {
                 "code": this.code,
                 "age": this.age,

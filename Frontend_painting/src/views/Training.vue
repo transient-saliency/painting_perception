@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-09-17 23:36:36
- * @LastEditTime: 2024-05-27 22:58:52
+ * @LastEditTime: 2024-06-15 22:49:05
 -->
 <template>
     <div class="common-layout" :style="{width: '100%', height: '100vh', backgroundColor: isRelax ? ' #797775' : '#ffffff'}" v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
@@ -38,7 +38,7 @@ export default {
             msgH: null,
             pattern: [],
             patternCnt: 0,
-            timeCnt: 0,
+            timeCnt: 30,
             timeNote: 0,
             maxCnt: -1,
             isRelax: true,
