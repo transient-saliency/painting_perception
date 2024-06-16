@@ -47,19 +47,19 @@
 "type": "l-b",
 "tag": 0
 }
-},{"name":"natural scene 5",
+},{"name":"water flower",
 "a-b": {
-"fig_info":  ["natural5_ab_0deg.png", "natural5_ab_45deg.png", "natural5_ab_90deg.png", "natural5_ab_135deg.png", "natural5_ab_180deg.png", "natural5_ab_225deg.png", "natural5_ab_270deg.png", "natural5_ab_315deg.png"],
+"fig_info":  ["water_flower_ab_0deg.png", "water_flower_ab_45deg.png", "water_flower_ab_90deg.png", "water_flower_ab_135deg.png", "water_flower_ab_180deg.png", "water_flower_ab_225deg.png", "water_flower_ab_270deg.png", "water_flower_ab_315deg.png"],
 "type": "a-b",
 "tag": 1
 },
 "l-a": {
-"fig_info":   ["natural5_la_0deg.png", "natural5_la_45deg.png", "natural5_la_90deg.png", "natural5_la_135deg.png", "natural5_la_180deg.png", "natural5_la_225deg.png", "natural5_la_270deg.png", "natural5_la_315deg.png"],
+"fig_info":   ["water_flower_la_0deg.png", "water_flower_la_45deg.png", "water_flower_la_90deg.png", "water_flower_la_135deg.png", "water_flower_la_180deg.png", "water_flower_la_225deg.png", "water_flower_la_270deg.png", "water_flower_la_315deg.png"],
 "type": "l-a",
 "tag": 1
 },
 "l-b": {
-"fig_info":   ["natural5_lb_0deg.png", "natural5_lb_45deg.png", "natural5_lb_90deg.png", "natural5_lb_135deg.png", "natural5_lb_180deg.png", "natural5_lb_225deg.png", "natural5_lb_270deg.png", "natural5_lb_315deg.png"],
+"fig_info":   ["water_flower_lb_0deg.png", "water_flower_lb_45deg.png", "water_flower_lb_90deg.png", "water_flower_lb_135deg.png", "water_flower_lb_180deg.png", "water_flower_lb_225deg.png", "water_flower_lb_270deg.png", "water_flower_lb_315deg.png"],
 "type": "l-b",
 "tag": 1
 }

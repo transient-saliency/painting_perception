@@ -7,6 +7,17 @@
 -->
 <template>
     <div style="width: 100%; height: 100%; text-align: left;">
+        <div v-show="hoverImg.isShow" :style="{
+            position: 'absolute',
+            left: hoverImg.x + 'px',
+            top: hoverImg.y + 'px',
+            height: '50vh',
+            zIndex: 100,
+            pointerEvents: 'none',
+            transition: '.1s'
+        }">
+            <img :src="hoverImg.path" style="height: 100%; transform: translate(-50%, -20%);" alt="">
+        </div>
         <div>
             <VueDraggable v-model="painting_data" :animation="150" :group="{ name: 'painting', pull: 'clone', put: false }" :sort="false" @clone="onClone" class="image-container">
                 <div v-for="(item, i) in painting_data" :key="item.id" style="text-align: center; cursor: pointer;" class="default">
@@ -15,7 +26,7 @@
                             {{ item.id }}
                         </span>
                     </div>
-                    <img :src="item.path" alt="" style="height: 85%;">
+                    <img :src="item.path" alt="" style="height: 85%;" @mousemove="imgHover($event, item.path)" @mouseout="imgOut">
                 </div>
             </VueDraggable>
             <hr style="margin-top: 20px;">
@@ -125,10 +136,26 @@ export default {
             selectList_1: [],
             selectList_2: [],
             select_id: [-1, -1],
-            selectElementIndex: -1
+            selectElementIndex: -1,
+            hoverImg: {
+                isShow: false,
+                path: '',
+                x: 0,
+                y: 0
+            }
         };
     },
     methods: {
+        imgHover(event, path) {
+            // console.log(event, path);
+            this.hoverImg.path = path;
+            this.hoverImg.x = event.clientX;
+            this.hoverImg.y = event.clientY;
+            this.hoverImg.isShow = true;
+        },
+        imgOut() {
+            this.hoverImg.isShow = false;
+        },
         dataProcess(data, cnt, info) {
             // console.log(data.data[cnt], cnt, data);
             let path_data = data.data[cnt][info].fig_info;
@@ -136,7 +163,7 @@ export default {
             let name = data.data[cnt].name;
             let type = data.data[cnt][info].type;
             let res_data = new Array();
-            console.log(name, path_data, data.data[cnt], type, info)
+            // console.log(name, path_data, data.data[cnt], type, info)
             for (let i in path_data) {
                 res_data.push({
                     type: type,
@@ -165,6 +192,7 @@ export default {
         },
         onClone(evt) {
             console.log('clone');
+            this.hoverImg.isShow = false;
             this.selectElementIndex = evt.oldIndex;
         },
         onAdd1(evt) {
@@ -227,9 +255,10 @@ export default {
     height: calc(8vh);
 }
 
+
 .default {
-    max-height: calc(20vh + 30px);
-    max-width: 20%;
+    max-height: calc(25vh + 0px);
+    max-width: 25%;
     /* height: 10vh */
 }
 </style>
